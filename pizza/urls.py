@@ -5,8 +5,8 @@ from pizza_app import views
 
 urlpatterns = patterns('',
     # url(r'^$', 'pizza.views.home', name='home'),
-    url(r'^pizzas/$', views.PizzaList.as_view()),
-    url(r'^pizzas/(?P<name>[a-zA-Z]+)$', views.PizzaDetail.as_view()),
+    url(r'^pizzas/$', views.PizzaList.as_view(), name='pizza_list'),
+    url(r'^pizzas/(?P<name>[a-zA-Z]+)$', views.PizzaDetail.as_view(), name='pizza_detail'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 )

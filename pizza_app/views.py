@@ -13,6 +13,7 @@ class PizzaList(APIView):
     """
     List all pizzas, or create a new pizza.
     """  
+    serializer_class = PizzaSerializer
     def get(self, request, format=None):
         pizzas = Pizza.objects.all()
         serializer = PizzaSerializer(pizzas, many=True)
@@ -29,6 +30,7 @@ class PizzaDetail(APIView):
     """
     Retrieve, update or delete a pizza instance.
     """
+    serializer_class = PizzaSerializer
     def get_object(self, name):  
         try:
             return Pizza.objects.get(name__iexact=name)
@@ -46,13 +48,6 @@ class PizzaDetail(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def post(self, request, name, format=None):
-        serializer = PizzaSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, name, format=None):
