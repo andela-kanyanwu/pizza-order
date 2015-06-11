@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="PizzaApp">
+
+<head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <title>Pizza</title>
+</head>
+
+<body>
+    <div ng-controller="PizzaController" ng-init="pizzaList()">
+        <h4>Place your pizza order</h4>
+        <ul ng-repeat="pizza in pizzas">
+            <li ng-bind="pizza.name" ng-click="pizzaForm(pizza.name)"></li>
+            <p>Price: N{{pizza.price}}</p>
+        </ul>
+        <form>
+        <p>You have selected {{pizzaName}} pizza</p>
+        Enter the quantity: <input type="text" ng-model="pizzaQuantity"/><br />
+        <input type="submit" ng-click="pizzaOrder()" value="Save" />
+    </form>
+    </div>
+
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="pizza_client/app.js"></script>
+    <script type="text/javascript" src="pizza_client/controller.js"></script>
+    <script type="text/javascript" src="pizza_client/services.js"></script>
+</body>
+
+</html>
